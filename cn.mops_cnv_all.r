@@ -3,11 +3,7 @@
 
 library(cn.mops)
 
-segments_auto <- read.table(file="/media/hanjinu/SS200/db/refs/gencode/gencode.v34.basic.annotation.autosome.bed",
-                    header=FALSE, sep="\t", as.is=TRUE)
-
-
-all <- list.files(path=".", pattern=".CNV.bam$")
+all <- list.files(path=".", pattern=".analysisready.bam$")
 
 
 #######################################################################################
@@ -15,11 +11,10 @@ print('Working on all...')
 
 setwd(dir=".")
 
-gr <- GRanges(segments_auto[,1], IRanges(segments_auto[,2],segments_auto[,3]))
 
-X <- getSegmentReadCountsFromBAM(all, GR=gr)
+bamDataRanges <- getReadCountsFromBAM(all)
 
-resCNMOPS <- exomecn.mops(X)
+resCNMOPS <- cn.mops(bamDataRanges)
 resCNMOPS <- calcIntegerCopyNumbers(resCNMOPS)
 
 #plot(resCNMOPS, which=5)
