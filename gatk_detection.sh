@@ -71,7 +71,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/female/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_XY \
-    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed.gz \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/female/targets.annotated.tsv 
@@ -190,7 +190,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/male/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_XY \
-    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed.gz \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/male/targets.annotated.tsv \
@@ -301,7 +301,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/all/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_AUTO \
-    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed.gz \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/all/targets.annotated.tsv \
