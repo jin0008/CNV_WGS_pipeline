@@ -17,9 +17,9 @@ for i in bams:
     sample_l.append(sample)
     bamfile = pysam.AlignmentFile(i, "rb")
     sry_count = bamfile.count(contig='Y', start=2655030, stop=2655644, until_eof=False, read_callback='all')
-    if sry_count >= 4:
+    if sry_count >= 1:
         sex = "M"
-    elif sry_count <= 3:
+    elif sry_count <= 0:
         sex = "F"
     else:
         sex = "?"
