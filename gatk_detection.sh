@@ -48,8 +48,7 @@ gatk PreprocessIntervals \
     -R $REF \
     -L $TARGET_XY \
     -XL $CENTROMETIC_XY \
-    --bin-length 0 \
-    --padding 50 \
+    --bin-length 1000 \
     --interval-merging-rule OVERLAPPING_ONLY \
     -O gatkcnv_output/female/targets.preprocessed.interval_list 
 
@@ -72,7 +71,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/female/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_XY \
-    --mappability-track /media/hanjinu/SS200/db/refs/hg38/k100.umap.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/female/targets.annotated.tsv 
@@ -164,10 +163,9 @@ echo ""
 # Define the resolution of the analysis with a genomic intervals list
 gatk PreprocessIntervals \
     -R  $REF \
-    -L  $TARGET_XY \
     -XL $CENTROMETIC_XY \
-    --bin-length 0 \
-    --padding 50 \
+    --bin-length 1000 \
+    --padding 0 \
     --interval-merging-rule OVERLAPPING_ONLY \
     -O gatkcnv_output/male/targets.preprocessed.interval_list \
     --verbosity ERROR
@@ -192,7 +190,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/male/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_XY \
-    --mappability-track /media/hanjinu/SS200/db/refs/hg38/k100.umap.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/male/targets.annotated.tsv \
@@ -276,10 +274,9 @@ echo ""
 Define the resolution of the analysis with a genomic intervals list
 gatk PreprocessIntervals \
     -R  $REF \
-    -L  $TARGET_AUTO \
     -XL $CENTROMETIC_AUTO \
-    --bin-length 0 \
-    --padding 50 \
+    --bin-length 1000 \
+    --padding 0 \
     --interval-merging-rule OVERLAPPING_ONLY \
     -O gatkcnv_output/all/targets.preprocessed.interval_list \
     --verbosity ERROR
@@ -304,7 +301,7 @@ done
 gatk AnnotateIntervals \
     -L gatkcnv_output/all/targets.preprocessed.interval_list \
     -XL $CENTROMETIC_AUTO \
-    --mappability-track /media/hanjinu/SS200/db/refs/hg38/k100.umap.bed \
+    --mappability-track /media/hanjinu/SS200/db/refs/mappability/k100.umap.b37.bed \
     -R $REF \
     -imr OVERLAPPING_ONLY \
     -O gatkcnv_output/all/targets.annotated.tsv \
