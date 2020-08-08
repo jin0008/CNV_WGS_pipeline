@@ -15,7 +15,6 @@ setwd(dir=".")
 bamDataRanges <- getReadCountsFromBAM(all, WL = 25000, parallel=20)
 
 resCNMOPS <- cn.mops(bamDataRanges)
-resCNMOPS <- calcIntegerCopyNumbers(resCNMOPS)
 
 #plot(resCNMOPS, which=5)
 
