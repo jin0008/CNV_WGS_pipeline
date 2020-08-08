@@ -12,7 +12,7 @@ print('Working on all...')
 setwd(dir=".")
 
 
-bamDataRanges <- getReadCountsFromBAM(all, WL = 25000, parallel=20)
+bamDataRanges <- getReadCountsFromBAM(all, WL = 5000, parallel=20)
 
 resCNMOPS <- cn.mops(bamDataRanges)
 
