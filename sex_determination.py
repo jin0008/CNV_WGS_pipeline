@@ -1,29 +1,37 @@
 # coding: utf-8
 
 # Author: Julien Buratti
+#!/usr/bin/env python3
 
 import os
 import glob
 import pysam
+import sys
 
 sample_l = []
 sex_d = {}
-bams = glob.glob("*.analysisready.bam")
+bams = glob.glob("*.dedup.bam")
 
-print("\nSex determination script openning.\n")
+print("\n************************************")
+print("Sex determination script openning.")
+print("************************************\n")
 
 for i in bams:
+    
     sample = os.path.basename(i.split(".")[0])
     sample_l.append(sample)
-    bamfile = pysam.AlignmentFile(i, "rb")
-    sry_count = bamfile.count(contig='Y', start=2655030, stop=2655644, until_eof=False, read_callback='all')
-    if sry_count >= 1:
+    bamfile = pysam.AlignmentFile(i, "rb", check_sq=False)
+    sry_count = bamfile.count(contig='chrY', start=2786989, stop=2787603, until_eof=False, read_callback='all')
+    print(sry_count)
+
+
+    if sry_count >= 20:
         sex = "M"
-    elif sry_count <= 0:
+    elif sry_count <= 10:
         sex = "F"
     else:
         sex = "?"
-        sys.exit("/!\\ Ambigous Sex Determination, please check!")    
+    
     sex_d[sample] = sex
 
 if os.path.isfile("samples.txt"):
